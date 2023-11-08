@@ -13,7 +13,7 @@ function Users() {
                  <div className='row'>
                      <div className='col-md-12'>
                             <div className='d-flex vh-100 bg-primary justify-content-center align-items-center'>
-                                <div className='bg-white round p-3'>
+                                <div className='w-50 bg-white round p-3'>
                                     <Link to="/create" className='btn btn-success'>Add +</Link>
                                     <table className='table'>
                                         <thead>
@@ -32,7 +32,8 @@ function Users() {
                                                         <td>{user.Email}</td>
                                                         <td>{user.Age}</td>
                                                         <td>
-                                                            <button className='btn btn-success'>EDIT</button><button className='btn btn-danger'>DELETE</button>
+                                                            <Link to="/update" className='btn btn-success'>EDIT</Link>
+                                                            <button className='btn btn-danger'>DELETE</button>
                                                         </td>
                                                     </tr>
                                                 })
