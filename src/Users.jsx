@@ -1,11 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 function Users() {
-    const [users,setUsers]=useState([{
-        Name:"sathish",
-        Email:"sathishfreelanc5@gmail.com",
-        Age:26
-    }])
+    const [users,setUsers]=useState([])
+
+    useEffect(()=>{
+        axios.get('http://localhost:3001/')
+        .then(result =>setUsers(result.data))
+        .catch(err =>console.log(err))
+    },[])
+
+    const handleDelete=(id)=>{
+        axios.delete('http://localhost:3001/deleteUser/'+id)
+        .then(res =>{console.log(res)
+            window.location.reload()
+        })
+        .catch(err =>console.log(err))
+    }
   return (
     <>
         <section>
@@ -28,12 +39,12 @@ function Users() {
                                             {
                                                 users.map((user)=>{
                                                 return <tr>
-                                                        <td>{user.Name}</td>
-                                                        <td>{user.Email}</td>
-                                                        <td>{user.Age}</td>
+                                                        <td>{user.name}</td>
+                                                        <td>{user.email}</td>
+                                                        <td>{user.age}</td>
                                                         <td>
-                                                            <Link to="/update" className='btn btn-success'>EDIT</Link>
-                                                            <button className='btn btn-danger'>DELETE</button>
+                                                            <Link to={`/update/${user._id}`} className='btn btn-success'>EDIT</Link>
+                                                            <button className='btn btn-danger' onClick={(e)=>handleDelete(user._id)}>DELETE</button>
                                                         </td>
                                                     </tr>
                                                 })

@@ -8,6 +8,7 @@ function CreateUser() {
   const [email,setEmail]=useState()
   const [age,setAge]=useState()
   const navigate=useNavigate()
+  
   const Submit=(e)=>{
       e.preventDefault();
       axios.post('http://localhost:3001/createUser',{name,email,age})
